@@ -1,0 +1,166 @@
+@import '@fontsource/plus-jakarta-sans/latin-400.css';
+@import '@fontsource/plus-jakarta-sans/latin-500.css';
+@import '@fontsource/plus-jakarta-sans/latin-600.css';
+@import '@fontsource/plus-jakarta-sans/latin-700.css';
+@import '@fontsource/plus-jakarta-sans/latin-800.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-500.css';
+
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-display: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+    --color-maritime-900: #0B2545;
+    --color-maritime-800: #133C6D;
+    --color-marine-700: #1E4E79;
+    --color-marine-100: #EAF0F6;
+
+    --color-hub-gold: #E5A91A;
+    --color-hub-gold-hover: #D4990E;
+    --color-hub-ochre: #8A5A00;
+
+    --color-paper: #F8F7F4;
+    --color-surface: #FFFFFF;
+    --color-stone: #F1EFEA;
+    --color-ink: #1B2430;
+    --color-ink-muted: #4B5563;
+    --color-rule: #D6D3CB;
+    --color-control-border: #6A6F78;
+    --color-control-border-white: #6E737D;
+
+    --color-status-ok: #166534;
+    --color-status-ok-bg: #DCFCE7;
+    --color-status-warn: #854D0E;
+    --color-status-warn-bg: #FEF9C3;
+    --color-status-err: #991B1B;
+    --color-status-err-bg: #FEE2E2;
+}
+
+@layer base {
+    html {
+        background-color: var(--color-paper);
+        color: var(--color-ink);
+        font-family: var(--font-sans);
+    }
+
+    body {
+        min-height: 100dvh;
+        overflow-x: clip;
+    }
+
+    /* Set interactive pointer affordances once in base layer after Tailwind preflight (R-39). */
+    a[href],
+    button,
+    summary,
+    select,
+    label[for],
+    label:has(> input[type='checkbox'], > input[type='radio']),
+    [role='button'],
+    [role='link'],
+    [role='tab'],
+    [role='menuitem'],
+    [role='option'],
+    [role='switch'],
+    input[type='checkbox'],
+    input[type='radio'],
+    input[type='file'],
+    input[type='submit'],
+    input[type='button'],
+    input[type='reset'] {
+        cursor: pointer;
+    }
+
+    :disabled,
+    [aria-disabled='true'] {
+        cursor: not-allowed;
+        opacity: 0.65;
+    }
+
+    :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+        outline: 3px solid var(--color-maritime-900);
+        outline-offset: 2px;
+    }
+
+    .dark-surface :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+        outline-color: var(--color-hub-gold);
+    }
+}
+
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100%;
+    z-index: 60;
+    background-color: var(--color-maritime-900);
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    border: 2px solid var(--color-hub-gold);
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+.type-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.875rem, 1.4rem + 2.2vw, 3.125rem);
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+.type-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.type-h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+    line-height: 1.32;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+.tabular-code {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+.horizon-rule {
+    display: block;
+    width: 3.5rem;
+    height: 3px;
+    background-color: var(--color-hub-gold);
+}
+
+.horizon-rule-ochre {
+    display: block;
+    width: 3.5rem;
+    height: 3px;
+    background-color: var(--color-hub-ochre);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
